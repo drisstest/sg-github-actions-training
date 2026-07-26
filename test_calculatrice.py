@@ -1,4 +1,4 @@
-from calculatrice import addition, division
+from calculatrice import addition, division, soustraction
 
 def test_addition():
     assert addition(2, 3) == 5
@@ -15,4 +15,6 @@ def test_division_zero():
         assert False 
     except ValueError:
         assert True
-    
+
+def test_soustraction():
+    assert soustraction(5, 3) == 2
