@@ -17,7 +17,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run script  # lance le script hello.py
-        run: python hello.py
+      - name: install pytest
+        run: pip install pytest
+
+      - name: Run tests  # lance les tests
+        run: pytest 
 
       
