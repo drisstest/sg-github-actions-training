@@ -3,10 +3,21 @@ name: Hello World
 on: push 
 
 jobs: 
+
   say-hello: 
+
     runs-on: ubuntu-latest 
+
     steps: 
-      - name: Print message 
-        run: echo "Hello depuis Github Actions !" 
+      - name: Checkout code  # copie les fichiers du dépôt sur la VM
+        uses: actions/checkout@v4 
+
+      - name: Setup Python # installe l'environnement python 
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run script  # lance le script hello.py
+        run: python hello.py
 
       
