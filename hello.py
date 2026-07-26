@@ -1,0 +1,1 @@
+print("Hello from a real Python script running in GitHub Actions!")
