@@ -1,26 +1,19 @@
-name: Hello World 
+name: Hello world 
 
-on: push 
+on: 
+  push: 
+    branches: [main]
+  workflow_dispatch:
 
 jobs: 
-
-  say-hello: 
-
-    runs-on: ubuntu-latest 
-
+  hello: 
+    runs-on: ubuntu-24.04
     steps: 
-      - name: Checkout code  # copie les fichiers du dépôt sur la VM
-        uses: actions/checkout@v4 
+      - name: Dire bonjour
+        run: echo "Hello, Github Actions !" 
 
-      - name: Setup Python # installe l'environnement python 
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: install pytest
-        run: pip install pytest
-
-      - name: Run tests  # lance les tests
-        run: pytest 
-
-      
+      - name: Afficher des infos sur le contexte
+        run: | 
+          echo "Repository : \${{ github.repository }}"
+          echo "Branche : \${{ github.ref_name }}"
+          echo "Auteur du commit : \${{ github.actor }}"
