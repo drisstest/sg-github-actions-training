@@ -1,5 +1,8 @@
 name: TEST VARIABLE ENV
 
+permissions: 
+    contents: read
+
 on: 
   workflow_dispatch:
 
@@ -14,7 +17,7 @@ jobs:
 
       - name: Récuperer le code 
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        
+
       - name: caculer la version 
         id: version
         run: | 

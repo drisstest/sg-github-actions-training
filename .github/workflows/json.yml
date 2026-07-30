@@ -1,0 +1,26 @@
+name: TEST JSON 
+
+on: 
+  workflow_dispatch:
+
+jobs: 
+  test_json: 
+    runs-on: ubuntu-24.04
+    steps: 
+      # toJSON() - Convertir en JSON (parfait pour le debug)
+      - name: Debug du context
+        run: echo '${{ toJSON(github) }}'
+
+    # fromJSON() - Parser du JSON
+      - name: Utiliser des données JSON
+        run: |
+            DATA='{"version": "1.2.3", "stable": true}'
+            echo "$DATA" > data.json
+
+      - name: Lire le JSON
+        id: data
+        run: echo "json=$(cat data.json)" >> $GITHUB_OUTPUT
+
+      - name: Utiliser
+        run: |
+            echo "Version: ${{ fromJSON(steps.data.outputs.json).version }}"
