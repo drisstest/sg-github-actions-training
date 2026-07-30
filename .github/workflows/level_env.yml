@@ -1,0 +1,19 @@
+name: TEST VARIABLE ENV
+
+on: 
+  workflow_dispatch:
+
+env:
+  NIVEAU: "GLOBAL"
+
+jobs: 
+  build:
+    runs-on: ubuntu-24.04
+    env: 
+      NIVEAU: "JOB"
+    steps: 
+      - name: Afficher var d'env 
+        env: 
+          NIVEAU: "STEP"
+        run: | 
+            echo "NIVEAU du job : ${{ env.NIVEAU }}"
