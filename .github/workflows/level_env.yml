@@ -4,16 +4,18 @@ on:
   workflow_dispatch:
 
 env:
-  NIVEAU: "GLOBAL"
+  GLOBAL: "workflow"
 
 jobs: 
   build:
     runs-on: ubuntu-24.04
     env: 
-      NIVEAU: "JOB"
+      JOB: "JOB"
     steps: 
       - name: Afficher var d'env 
         env: 
-          NIVEAU: "STEP"
+          STEP: "STEP"
         run: | 
-            echo "NIVEAU du job : ${{ env.NIVEAU }}"
+            echo "NIVEAU du workflow : ${{ env.GLOBAL }}"
+            echo "NIVEAU du job : ${{ env.JOB }}"
+            echo "NIVEAU du step : ${{ env.STEP }}"
