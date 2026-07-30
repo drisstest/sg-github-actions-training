@@ -7,6 +7,22 @@ env:
   GLOBAL: "workflow"
 
 jobs: 
+
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: caculer la version 
+        id: version
+        run: | 
+            VERSION=$(cat version.txt)
+            echo "value=$VERSION" >> $GITHUB_OUTPUT
+            echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      
+      - name: Afficher les versions 
+        run: | 
+            echo "Version: ${{ steps.version.outputs.value }}"
+            echo "SHA short: ${{ steps.version.outputs.sha_short }}"
+
   build:
     runs-on: ubuntu-24.04
     env: 
@@ -16,6 +32,6 @@ jobs:
         env: 
           STEP: "STEP"
         run: | 
-            echo "NIVEAU du workflow : ${{ env.GLOBAL }}"
-            echo "NIVEAU du job : ${{ env.JOB }}"
-            echo "NIVEAU du step : ${{ env.STEP }}"
+            echo "NIVEAU du workflow : ${{ env.GLOBAL }}" # ou $GLOBAL
+            echo "NIVEAU du job : ${{ env.JOB }}" # ou $JOB
+            echo "NIVEAU du step : ${{ env.STEP }}" # ou $STEP
