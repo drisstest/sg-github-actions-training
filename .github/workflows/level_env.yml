@@ -11,6 +11,10 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
+
+      - name: Récuperer le code 
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        
       - name: caculer la version 
         id: version
         run: | 
