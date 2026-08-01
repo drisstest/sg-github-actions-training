@@ -1,0 +1,18 @@
+name: INPUT 
+
+permissions: 
+    contents: read
+
+on: 
+    workflow_dispatch:
+        inputs: 
+            prenom: 
+                description: "Ton prenom" 
+                required: true 
+                type: string    
+jobs: 
+    test: 
+        runs-on: ubuntu-24.04
+        steps: 
+            - name: Dire bonjour
+              run: echo "Bonjour \${{ inputs.prenom }} !"
